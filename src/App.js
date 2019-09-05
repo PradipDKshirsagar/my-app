@@ -1,26 +1,30 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
+import { Container } from 'reactstrap';
 import logo from './logo.svg';
 import './App.css';
+import FollowerForm from './components/form';
+import Followers from './components/followers';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends PureComponent{
+  state = {
+    followers: [],
+  };
+
+  setFollowers = (followers) =>{
+    this.setState({followers});
+  }
+  
+  render(){
+    return (
+      <div>
+        <Container>
+          <FollowerForm setFollowers={this.setFollowers} />
+          <Followers followers={this.state.followers}/>
+        </Container>
+      </div>
+    );
+  }
 }
 
 export default App;
